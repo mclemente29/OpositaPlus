@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpositaPlus — Academia de Oposiciones Líder en España</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+--navy:#0B1D3A;--navy-light:#132B52;--gold:#C8A24E;--gold-light:#E8C96A;--gold-pale:#FFF8E7;
+--cream:#FAFAF5;--white:#FFFFFF;--g50:#F8F8F5;--g100:#F4F4F0;--g200:#E8E8E2;--g300:#D0D0C8;
+--g500:#8A8A7E;--g600:#6A6A5E;--g700:#4A4A42;--g900:#1A1A16;--ok:#2D8B5F;
+--fd:'DM Serif Display',Georgia,serif;--fb:'Plus Jakarta Sans',-apple-system,sans-serif;
+--ss:0 1px 3px rgba(11,29,58,.06);--sm:0 4px 16px rgba(11,29,58,.08);
+--sl:0 8px 40px rgba(11,29,58,.12);--sx:0 20px 60px rgba(11,29,58,.16);
+--rs:6px;--rm:12px;--rl:20px;--rx:28px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);color:var(--g900);background:var(--cream);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+.section-pad{padding:100px 0}
+
+/* Animations */
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes scaleIn{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+.anim{opacity:0}.anim.vis{animation:fadeUp .65s ease forwards}
+.ad1{animation-delay:.1s!important}.ad2{animation-delay:.2s!important}.ad3{animation-delay:.3s!important}
+.ad4{animation-delay:.4s!important}.ad5{animation-delay:.5s!important}.ad6{animation-delay:.6s!important}
+
+/* Top Bar */
+.top-bar{background:var(--navy);color:rgba(255,255,255,.7);font-size:13px;padding:8px 0}
+.top-bar .container{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.top-bar a{color:var(--gold-light)}.top-bar a:hover{color:var(--gold)}
+.tb-left,.tb-right{display:flex;align-items:center;gap:20px}
+
+/* Navbar */
+.navbar{background:var(--white);position:sticky;top:0;z-index:1000;box-shadow:var(--ss);transition:box-shadow .3s}
+.navbar.scrolled{box-shadow:var(--sm)}
+.navbar .container{display:flex;justify-content:space-between;align-items:center;height:76px}
+.logo{display:flex;align-items:center;gap:12px;cursor:pointer}
+.logo-icon{width:46px;height:46px;background:linear-gradient(135deg,var(--navy),var(--navy-light));border-radius:var(--rs);display:flex;align-items:center;justify-content:center;color:var(--gold);font-family:var(--fd);font-size:22px;font-weight:700;position:relative;overflow:hidden}
+.logo-icon::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--gold)}
+.logo-text{font-family:var(--fd);font-size:24px;color:var(--navy);line-height:1}
+.logo-text span{color:var(--gold)}
+.logo-sub{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:var(--g500);display:block;margin-top:2px}
+.nav-links{display:flex;align-items:center;gap:32px;list-style:none}
+.nav-links a{color:var(--g700);font-size:14px;font-weight:500;transition:color .2s;position:relative;cursor:pointer}
+.nav-links a:hover,.nav-links a.active{color:var(--navy)}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--gold);transition:width .3s}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.nav-cta{background:var(--navy)!important;color:var(--white)!important;padding:10px 24px;border-radius:var(--rs);font-weight:600!important;transition:all .3s!important}
+.nav-cta:hover{background:var(--navy-light)!important;transform:translateY(-1px)}.nav-cta::after{display:none!important}
+.mob-toggle{display:none;background:none;border:none;cursor:pointer;padding:8px}
+.mob-toggle span{display:block;width:24px;height:2px;background:var(--navy);margin:5px 0;transition:.3s}
+
+/* Buttons */
+.btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:var(--navy);padding:16px 32px;border-radius:var(--rs);font-weight:700;font-size:15px;transition:all .3s;border:none;cursor:pointer;font-family:var(--fb)}
+.btn-primary:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 8px 30px rgba(200,162,78,.3)}
+.btn-outline{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--white);padding:16px 32px;border-radius:var(--rs);font-weight:600;font-size:15px;border:1.5px solid rgba(255,255,255,.25);transition:all .3s;cursor:pointer}
+.btn-outline:hover{border-color:rgba(255,255,255,.5);background:rgba(255,255,255,.05)}
+.btn-dark{display:inline-flex;align-items:center;gap:8px;background:var(--navy);color:var(--white);padding:16px 32px;border-radius:var(--rs);font-weight:700;font-size:15px;transition:all .3s;border:none;cursor:pointer;font-family:var(--fb)}
+.btn-dark:hover{background:var(--navy-light);transform:translateY(-2px);box-shadow:var(--sl)}
+.btn-sm{padding:10px 20px;font-size:13px}
+.btn-gold-outline{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--navy);padding:12px 24px;border-radius:var(--rs);font-weight:600;font-size:14px;border:1.5px solid var(--g300);transition:all .3s;cursor:pointer}
+.btn-gold-outline:hover{border-color:var(--gold);color:var(--gold)}
+
+/* Section Headers */
+.sh{text-align:center;max-width:640px;margin:0 auto 60px}
+.sh-tag{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--gold);margin-bottom:16px}
+.sh-tag::before,.sh-tag::after{content:'';width:24px;height:1px;background:var(--gold)}
+.sh h2{font-family:var(--fd);font-size:42px;color:var(--navy);line-height:1.15;margin-bottom:16px}
+.sh p{font-size:17px;color:var(--g500);line-height:1.7}
+
+/* Pages SPA */
+.page{display:none;animation:fadeIn .4s ease}.page.active{display:block}
+
+/* Hero */
+.hero{background:linear-gradient(170deg,var(--navy) 0%,#0F2847 55%,#163461 100%);position:relative;overflow:hidden;min-height:680px;display:flex;align-items:center}
+.hero::before{content:'';position:absolute;top:-50%;right:-20%;width:800px;height:800px;background:radial-gradient(circle,rgba(200,162,78,.08) 0%,transparent 70%);border-radius:50%}
+.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:120px;background:linear-gradient(to top,var(--cream),transparent)}
+.hero-pat{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:60px 60px}
+.hero .container{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;padding-top:60px;padding-bottom:80px;position:relative;z-index:2}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(200,162,78,.15);border:1px solid rgba(200,162,78,.3);padding:6px 16px;border-radius:50px;color:var(--gold-light);font-size:13px;font-weight:600;margin-bottom:24px;animation:fadeUp .6s ease}
+.hero h1{font-family:var(--fd);font-size:54px;line-height:1.1;color:var(--white);margin-bottom:20px;animation:fadeUp .7s ease .1s both}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero-sub{font-size:18px;color:rgba(255,255,255,.7);line-height:1.7;margin-bottom:36px;max-width:500px;animation:fadeUp .7s ease .2s both}
+.hero-ctas{display:flex;gap:16px;flex-wrap:wrap;animation:fadeUp .7s ease .3s both}
+.hero-stats{display:flex;gap:40px;margin-top:40px;animation:fadeUp .7s ease .4s both}
+.hero-stat-num{font-family:var(--fd);font-size:36px;color:var(--gold);line-height:1}
+.hero-stat-label{font-size:13px;color:rgba(255,255,255,.5);margin-top:4px}
+.hero-visual{position:relative;animation:scaleIn .8s ease .3s both}
+.hero-card{background:var(--white);border-radius:var(--rl);padding:32px;box-shadow:var(--sx)}
+.hero-card-header{display:flex;align-items:center;gap:12px;margin-bottom:24px}
+.hero-card-avatar{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--gold-pale),var(--gold-light));display:flex;align-items:center;justify-content:center;font-size:20px}
+.hero-card-info h4{font-size:15px;font-weight:700;color:var(--navy)}.hero-card-info p{font-size:12px;color:var(--g500)}
+.progress-bar{height:8px;background:var(--g200);border-radius:50px;overflow:hidden;margin-top:8px}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-light));border-radius:50px}
+.hero-card-subjects{display:flex;flex-direction:column;gap:10px;margin-top:20px}
+.subj-row{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:var(--g100);border-radius:var(--rs);font-size:14px;font-weight:500}
+.subj-check{width:22px;height:22px;border-radius:50%;background:var(--ok);color:white;display:flex;align-items:center;justify-content:center;font-size:12px}
+.subj-pending{width:22px;height:22px;border-radius:50%;border:2px solid var(--g300)}
+.hero-float{position:absolute;background:var(--white);border-radius:var(--rm);padding:16px 20px;box-shadow:var(--sl);animation:float 4s ease-in-out infinite}
+.hf1{top:-20px;right:-30px;display:flex;align-items:center;gap:10px}
+.hf2{bottom:30px;left:-40px;animation-delay:1.5s}
+
+/* Page Hero (sub-pages) */
+.page-hero{background:linear-gradient(170deg,var(--navy),#163461);padding:80px 0 60px;position:relative;overflow:hidden}
+.page-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:60px 60px}
+.page-hero .container{position:relative;z-index:2}
+.breadcrumb{font-size:13px;color:rgba(255,255,255,.4);margin-bottom:16px}
+.breadcrumb a{color:rgba(255,255,255,.6);cursor:pointer;transition:color .2s}.breadcrumb a:hover{color:var(--gold)}
+.page-hero h1{font-family:var(--fd);font-size:48px;color:var(--white);margin-bottom:12px}
+.page-hero h1 em{font-style:italic;color:var(--gold)}
+.page-hero-desc{font-size:18px;color:rgba(255,255,255,.6);max-width:600px}
+
+/* Trust Bar */
+.trust-bar{background:var(--white);padding:40px 0;border-bottom:1px solid var(--g200)}
+.trust-bar .container{text-align:center}
+.trust-label{font-size:12px;text-transform:uppercase;letter-spacing:2px;color:var(--g500);font-weight:600;margin-bottom:28px}
+.trust-logos{display:flex;justify-content:center;align-items:center;gap:48px;flex-wrap:wrap;opacity:.5}
+.trust-logo{font-family:var(--fd);font-size:18px;color:var(--g700)}
+
+/* Categories */
+.cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.cat-card{background:var(--white);border-radius:var(--rm);padding:32px 24px;text-align:center;transition:all .4s;border:1px solid var(--g200);cursor:pointer;position:relative;overflow:hidden}
+.cat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold);transform:scaleX(0);transition:transform .3s}
+.cat-card:hover::before{transform:scaleX(1)}.cat-card:hover{transform:translateY(-6px);box-shadow:var(--sl);border-color:transparent}
+.cat-icon{width:64px;height:64px;border-radius:var(--rm);display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 16px}
+.cat-card h3{font-size:16px;font-weight:700;color:var(--navy);margin-bottom:8px}
+.cat-card p{font-size:13px;color:var(--g500);line-height:1.6;margin-bottom:16px}
+.cat-count{font-size:12px;font-weight:700;color:var(--gold);background:var(--gold-pale);padding:4px 12px;border-radius:50px}
+.ci1{background:#EEF0FF;color:#4A5BC7}.ci2{background:#FFF0E8;color:#D4713A}.ci3{background:#E8F5EE;color:#2D8B5F}
+.ci4{background:#FFF5E8;color:#C8A24E}.ci5{background:#F0E8FF;color:#7C4AC7}.ci6{background:#FFE8EC;color:#C74A5B}
+.ci7{background:#E8F8FF;color:#3A8BD4}.ci8{background:#F5FFE8;color:#5B8B2D}
+
+/* Features */
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.feat-card{padding:36px 28px;border-radius:var(--rm);border:1px solid var(--g200);transition:all .3s;background:var(--white)}
+.feat-card:hover{border-color:var(--gold);box-shadow:var(--sm)}
+.feat-icon{width:52px;height:52px;border-radius:var(--rs);background:var(--gold-pale);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:20px}
+.feat-card h3{font-size:18px;font-weight:700;color:var(--navy);margin-bottom:10px}
+.feat-card p{font-size:14px;color:var(--g500);line-height:1.7}
+
+/* Stats */
+.stats-section{background:linear-gradient(170deg,var(--navy),var(--navy-light));position:relative;overflow:hidden;padding:80px 0}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;position:relative;z-index:2}
+.stat-item{text-align:center}
+.stat-number{font-family:var(--fd);font-size:52px;color:var(--gold);line-height:1;margin-bottom:8px}
+.stat-label{font-size:14px;color:rgba(255,255,255,.6);font-weight:500}
+.stat-div{width:40px;height:2px;background:rgba(200,162,78,.3);margin:12px auto 0}
+
+/* Tabs/Filters */
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:40px}
+.tabs-center{justify-content:center}
+.tab{padding:10px 24px;border-radius:50px;border:1px solid var(--g300);background:var(--white);font-size:14px;font-weight:500;cursor:pointer;transition:all .3s;color:var(--g700);font-family:var(--fb)}
+.tab:hover{border-color:var(--navy);color:var(--navy)}
+.tab.active{background:var(--navy);color:var(--white);border-color:var(--navy)}
+
+/* Course Cards */
+.courses-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.course-card{background:var(--white);border-radius:var(--rl);overflow:hidden;box-shadow:var(--ss);transition:all .4s;border:1px solid var(--g200)}
+.course-card:hover{transform:translateY(-8px);box-shadow:var(--sl);border-color:transparent}
+.course-img{height:200px;display:flex;align-items:center;justify-content:center;position:relative}
+.course-badge{position:absolute;top:16px;left:16px;padding:5px 12px;border-radius:50px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.badge-pop{background:var(--gold);color:var(--navy)}.badge-new{background:var(--ok);color:white}.badge-int{background:#C74A5B;color:white}
+.course-body{padding:24px}
+.course-cat{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--gold);margin-bottom:8px}
+.course-card h3{font-family:var(--fd);font-size:20px;color:var(--navy);margin-bottom:10px;line-height:1.3}
+.course-desc{font-size:14px;color:var(--g500);line-height:1.6;margin-bottom:20px}
+.course-meta{display:flex;align-items:center;gap:16px;margin-bottom:20px;font-size:13px;color:var(--g500)}
+.course-meta span{display:flex;align-items:center;gap:4px}
+.course-footer{display:flex;align-items:center;justify-content:space-between;padding-top:20px;border-top:1px solid var(--g200)}
+.course-price{font-family:var(--fd);font-size:24px;color:var(--navy)}
+.course-price small{font-size:14px;color:var(--g500);font-family:var(--fb)}
+.course-enroll{padding:10px 20px;background:var(--navy);color:var(--white);border:none;border-radius:var(--rs);font-weight:600;font-size:13px;cursor:pointer;transition:all .3s;font-family:var(--fb)}
+.course-enroll:hover{background:var(--gold);color:var(--navy)}
+.ci-1{background:linear-gradient(135deg,#1a365d,#2d3748)}.ci-2{background:linear-gradient(135deg,#744210,#975a16)}
+.ci-3{background:linear-gradient(135deg,#22543d,#276749)}.ci-4{background:linear-gradient(135deg,#553c9a,#6b46c1)}
+.ci-5{background:linear-gradient(135deg,#9b2c2c,#c53030)}.ci-6{background:linear-gradient(135deg,#2a4365,#2b6cb0)}
+
+/* Pricing */
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:start}
+.price-card{background:var(--white);border-radius:var(--rl);padding:40px 32px;border:2px solid var(--g200);transition:all .3s;text-align:center}
+.price-card:hover{border-color:var(--gold)}
+.price-card.feat{border-color:var(--navy);position:relative;transform:scale(1.03);box-shadow:var(--sx)}
+.price-card.feat::before{content:'MÁS POPULAR';position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--navy);padding:4px 20px;border-radius:50px;font-size:11px;font-weight:800;letter-spacing:1px}
+.price-card h3{font-size:20px;font-weight:700;color:var(--navy);margin-bottom:8px}
+.price-desc{font-size:14px;color:var(--g500);margin-bottom:24px}
+.price-amount{font-family:var(--fd);font-size:52px;color:var(--navy);line-height:1;margin-bottom:4px}
+.price-amount small{font-size:18px;color:var(--g500);font-family:var(--fb)}
+.price-period{font-size:13px;color:var(--g500);margin-bottom:32px}
+.price-features{list-style:none;text-align:left;margin-bottom:32px}
+.price-features li{padding:10px 0;font-size:14px;color:var(--g700);border-bottom:1px solid var(--g100);display:flex;align-items:center;gap:10px}
+.price-features li::before{content:'✓';color:var(--ok);font-weight:700}
+.price-btn{width:100%;padding:16px;border-radius:var(--rs);font-weight:700;font-size:15px;cursor:pointer;transition:all .3s;display:block;text-align:center;font-family:var(--fb);border:2px solid var(--navy)}
+.price-btn-o{background:transparent;color:var(--navy)}.price-btn-o:hover{background:var(--navy);color:var(--white)}
+.price-btn-f{background:var(--navy);color:var(--white)}.price-btn-f:hover{background:var(--gold);border-color:var(--gold);color:var(--navy)}
+
+/* Compare Table */
+.compare-table{width:100%;border-collapse:collapse;background:var(--white);border-radius:var(--rl);overflow:hidden;box-shadow:var(--ss);margin-top:48px}
+.compare-table th{padding:16px 20px;font-size:14px;font-weight:700;background:var(--navy);color:var(--white)}
+.compare-table th:first-child{text-align:left}.compare-table th:not(:first-child){text-align:center}
+.compare-table td{padding:14px 20px;font-size:14px;border-bottom:1px solid var(--g100);color:var(--g700)}
+.compare-table td:not(:first-child){text-align:center}
+.compare-table .check{color:var(--ok);font-weight:700}.compare-table .cross{color:var(--g300)}
+
+/* Method */
+.method-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.method-steps{display:flex;flex-direction:column;gap:32px}
+.method-step{display:flex;gap:20px;align-items:flex-start}
+.step-num{width:48px;height:48px;border-radius:50%;background:var(--gold-pale);color:var(--gold);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:20px;flex-shrink:0}
+.step-content h4{font-size:17px;font-weight:700;color:var(--navy);margin-bottom:6px}
+.step-content p{font-size:14px;color:var(--g500);line-height:1.7}
+.method-visual{background:linear-gradient(135deg,var(--navy),var(--navy-light));border-radius:var(--rx);padding:48px;position:relative;overflow:hidden;min-height:480px;display:flex;flex-direction:column;justify-content:center}
+.method-visual::before{content:'';position:absolute;top:-50%;right:-50%;width:100%;height:100%;background:radial-gradient(circle,rgba(200,162,78,.1),transparent 60%)}
+.mv-content{position:relative;z-index:2}
+.method-quote{font-family:var(--fd);font-size:28px;color:var(--white);line-height:1.4;margin-bottom:24px}
+.method-quote em{color:var(--gold);font-style:italic}
+.method-author{display:flex;align-items:center;gap:14px}
+.ma-avatar{width:48px;height:48px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;color:var(--navy)}
+
+/* Team */
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.team-card{background:var(--white);border-radius:var(--rl);overflow:hidden;transition:all .3s;border:1px solid var(--g200)}
+.team-card:hover{transform:translateY(-6px);box-shadow:var(--sl)}
+.team-photo{height:260px;background:linear-gradient(135deg,var(--g200),var(--g100));display:flex;align-items:center;justify-content:center}
+.team-ph{width:100px;height:100px;border-radius:50%;background:linear-gradient(135deg,var(--navy),var(--navy-light));display:flex;align-items:center;justify-content:center;font-size:36px;color:var(--gold);font-family:var(--fd)}
+.team-info{padding:24px;text-align:center}
+.team-info h3{font-size:17px;font-weight:700;color:var(--navy);margin-bottom:4px}
+.team-info .role{font-size:13px;color:var(--gold);font-weight:600;margin-bottom:8px}
+.team-info p{font-size:13px;color:var(--g500);line-height:1.6}
+.team-info .socials{display:flex;gap:8px;justify-content:center;margin-top:12px}
+.team-info .socials a{width:32px;height:32px;border-radius:50%;border:1px solid var(--g200);display:flex;align-items:center;justify-content:center;font-size:13px;transition:all .2s}
+.team-info .socials a:hover{border-color:var(--gold);color:var(--gold)}
+
+/* Testimonials */
+.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.test-card{background:var(--cream);border-radius:var(--rl);padding:32px;border:1px solid var(--g200);transition:all .3s}
+.test-card:hover{border-color:var(--gold)}
+.test-stars{display:flex;gap:3px;color:var(--gold);font-size:16px;margin-bottom:16px}
+.test-text{font-size:15px;color:var(--g700);line-height:1.7;margin-bottom:20px;font-style:italic}
+.test-author{display:flex;align-items:center;gap:12px}
+.test-avatar{width:44px;height:44px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;color:var(--gold);font-weight:700;font-size:16px}
+
+/* Blog */
+.blog-grid-main{display:grid;grid-template-columns:2fr 1fr;gap:40px}
+.blog-posts{display:flex;flex-direction:column;gap:28px}
+.blog-card{background:var(--white);border-radius:var(--rl);overflow:hidden;border:1px solid var(--g200);transition:all .3s;display:grid;grid-template-columns:280px 1fr;cursor:pointer}
+.blog-card:hover{box-shadow:var(--sl);border-color:transparent;transform:translateY(-3px)}
+.blog-card-img{display:flex;align-items:center;justify-content:center;font-size:48px;min-height:220px}
+.blog-card-body{padding:28px;display:flex;flex-direction:column;justify-content:center}
+.blog-tag{display:inline-block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--gold);background:var(--gold-pale);padding:4px 10px;border-radius:4px;margin-bottom:10px;width:fit-content}
+.blog-card h3{font-family:var(--fd);font-size:22px;color:var(--navy);margin-bottom:10px;line-height:1.3}
+.blog-card p{font-size:14px;color:var(--g500);line-height:1.6;margin-bottom:16px}
+.blog-meta{display:flex;align-items:center;gap:16px;font-size:13px;color:var(--g500)}
+.blog-meta-author{display:flex;align-items:center;gap:8px}
+.bm-avatar{width:28px;height:28px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:11px;font-weight:700}
+.blog-sidebar{display:flex;flex-direction:column;gap:24px}
+.sidebar-box{background:var(--white);border-radius:var(--rm);padding:24px;border:1px solid var(--g200)}
+.sidebar-box h4{font-size:16px;font-weight:700;color:var(--navy);margin-bottom:16px;padding-bottom:12px;border-bottom:2px solid var(--gold-pale)}
+.sidebar-cats{list-style:none}
+.sidebar-cats li{padding:10px 0;border-bottom:1px solid var(--g100);display:flex;justify-content:space-between;align-items:center}
+.sidebar-cats li a{font-size:14px;color:var(--g700);cursor:pointer;transition:color .2s}.sidebar-cats li a:hover{color:var(--gold)}
+.sidebar-cats li span{font-size:12px;background:var(--g100);padding:2px 8px;border-radius:50px;color:var(--g500)}
+.sidebar-popular{list-style:none}
+.sidebar-popular li{padding:12px 0;border-bottom:1px solid var(--g100)}.sidebar-popular li:last-child{border:none}
+.sidebar-popular li a{font-size:14px;font-weight:600;color:var(--navy);line-height:1.4;cursor:pointer;display:block}.sidebar-popular li a:hover{color:var(--gold)}
+.sidebar-popular li small{font-size:12px;color:var(--g500);margin-top:4px;display:block}
+.sidebar-newsletter p{font-size:14px;color:var(--g500);margin-bottom:16px;line-height:1.6}
+.sidebar-newsletter input{width:100%;padding:12px 14px;border:1.5px solid var(--g200);border-radius:var(--rs);font-size:14px;margin-bottom:10px;font-family:var(--fb)}
+
+/* Blog Detail */
+.blog-detail{max-width:800px;margin:0 auto}
+.blog-detail-hero{text-align:center;margin-bottom:48px}
+.blog-detail-hero h1{font-family:var(--fd);font-size:40px;color:var(--navy);line-height:1.2;margin-bottom:20px}
+.blog-detail-img{width:100%;height:400px;border-radius:var(--rl);display:flex;align-items:center;justify-content:center;font-size:100px;margin-bottom:40px}
+.blog-content{font-size:17px;color:var(--g700);line-height:1.9}
+.blog-content h2{font-family:var(--fd);font-size:28px;color:var(--navy);margin:40px 0 16px}
+.blog-content h3{font-size:20px;font-weight:700;color:var(--navy);margin:32px 0 12px}
+.blog-content p{margin-bottom:20px}
+.blog-content blockquote{border-left:4px solid var(--gold);padding:20px 24px;background:var(--gold-pale);border-radius:0 var(--rs) var(--rs) 0;margin:28px 0;font-style:italic;color:var(--navy)}
+.blog-share{display:flex;align-items:center;gap:12px;padding:28px 0;border-top:1px solid var(--g200);border-bottom:1px solid var(--g200);margin:40px 0}
+.blog-share span{font-weight:600;color:var(--navy);font-size:14px}
+.share-btn{width:40px;height:40px;border-radius:50%;border:1px solid var(--g200);display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;background:var(--white);transition:all .2s}
+.share-btn:hover{border-color:var(--gold);background:var(--gold-pale)}
+
+/* Comments */
+.comments-section{margin-top:48px}
+.comments-section h3{font-family:var(--fd);font-size:24px;color:var(--navy);margin-bottom:28px}
+.comment{display:flex;gap:16px;padding:24px 0;border-bottom:1px solid var(--g100)}
+.comment-avatar{width:44px;height:44px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;color:var(--gold);font-weight:700;font-size:16px;flex-shrink:0}
+.comment-body{flex:1}
+.comment-header{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+.comment-name{font-weight:700;font-size:14px;color:var(--navy)}
+.comment-date{font-size:12px;color:var(--g500)}
+.comment-text{font-size:14px;color:var(--g600);line-height:1.7}
+.comment-actions{display:flex;gap:16px;margin-top:8px}
+.comment-action{font-size:12px;color:var(--g500);cursor:pointer;background:none;border:none;font-family:var(--fb);transition:color .2s}
+.comment-action:hover{color:var(--gold)}
+.comment-reply{margin-left:60px}
+.comment-form{margin-top:32px;background:var(--g50);border-radius:var(--rm);padding:28px}
+.comment-form h4{font-size:16px;font-weight:700;color:var(--navy);margin-bottom:16px}
+.cf-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.cf-input{padding:12px 14px;border:1.5px solid var(--g200);border-radius:var(--rs);font-size:14px;font-family:var(--fb);background:var(--white)}
+.cf-input:focus{outline:none;border-color:var(--navy)}
+.cf-textarea{width:100%;padding:12px 14px;border:1.5px solid var(--g200);border-radius:var(--rs);font-size:14px;font-family:var(--fb);resize:vertical;min-height:120px;margin-bottom:12px;background:var(--white)}
+.cf-textarea:focus{outline:none;border-color:var(--navy)}
+
+/* Course Detail */
+.course-detail-grid{display:grid;grid-template-columns:2fr 1fr;gap:40px}
+.cd-main h2{font-family:var(--fd);font-size:28px;color:var(--navy);margin-bottom:16px;margin-top:40px}
+.cd-main h2:first-child{margin-top:0}
+.cd-main p{font-size:16px;color:var(--g600);line-height:1.8;margin-bottom:16px}
+.cd-temario{list-style:none;counter-reset:tema}
+.cd-temario li{counter-increment:tema;padding:16px 20px;border:1px solid var(--g200);border-radius:var(--rs);margin-bottom:8px;font-size:14px;color:var(--g700);transition:all .2s;cursor:pointer;display:flex;align-items:center;gap:12px}
+.cd-temario li:hover{border-color:var(--gold);background:var(--gold-pale)}
+.cd-temario li::before{content:'Tema ' counter(tema);font-weight:700;color:var(--gold);font-size:12px;text-transform:uppercase;letter-spacing:.5px;min-width:70px}
+.cd-sidebar-card{background:var(--white);border-radius:var(--rl);padding:32px;border:1px solid var(--g200);margin-bottom:20px;position:sticky;top:100px}
+.cd-sidebar-card .price-big{font-family:var(--fd);font-size:48px;color:var(--navy);text-align:center;margin-bottom:4px}
+.cd-sidebar-card .price-sub{text-align:center;font-size:14px;color:var(--g500);margin-bottom:24px}
+.cd-includes{list-style:none;margin-bottom:24px}
+.cd-includes li{padding:10px 0;font-size:14px;color:var(--g700);border-bottom:1px solid var(--g100);display:flex;align-items:center;gap:10px}
+.cd-includes li::before{content:'✓';color:var(--ok);font-weight:700;font-size:16px}
+
+/* FAQ */
+.faq-grid{max-width:800px;margin:0 auto}
+.faq-item{border:1px solid var(--g200);border-radius:var(--rm);margin-bottom:12px;background:var(--white);overflow:hidden;transition:all .3s}
+.faq-item:hover{border-color:var(--gold)}
+.faq-q{padding:22px 28px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-size:16px;font-weight:600;color:var(--navy)}
+.faq-icon{width:28px;height:28px;border-radius:50%;background:var(--gold-pale);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:18px;transition:transform .3s;flex-shrink:0}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.faq-a-inner{padding:0 28px 22px;font-size:15px;color:var(--g500);line-height:1.7}
+.faq-item.active .faq-icon{transform:rotate(45deg)}.faq-item.active .faq-a{max-height:300px}
+
+/* CTA */
+.cta-sec{background:linear-gradient(170deg,var(--navy),#163461);padding:100px 0;text-align:center;position:relative;overflow:hidden}
+.cta-sec::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(200,162,78,.08),transparent 60%)}
+.cta-content{position:relative;z-index:2;max-width:640px;margin:0 auto}
+.cta-sec h2{font-family:var(--fd);font-size:42px;color:var(--white);margin-bottom:16px;line-height:1.15}
+.cta-desc{font-size:18px;color:rgba(255,255,255,.65);margin-bottom:36px;line-height:1.7}
+.cta-form{display:flex;gap:12px;max-width:480px;margin:0 auto}
+.cta-input{flex:1;padding:16px 20px;border:1.5px solid rgba(255,255,255,.2);border-radius:var(--rs);background:rgba(255,255,255,.08);color:var(--white);font-size:15px;font-family:var(--fb)}
+.cta-input::placeholder{color:rgba(255,255,255,.4)}.cta-input:focus{outline:none;border-color:var(--gold);background:rgba(255,255,255,.12)}
+
+/* Pagination */
+.pagination{display:flex;justify-content:center;gap:8px;margin-top:48px}
+.page-btn{width:40px;height:40px;border-radius:var(--rs);border:1px solid var(--g200);background:var(--white);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;color:var(--g700);cursor:pointer;transition:all .2s;font-family:var(--fb)}
+.page-btn:hover{border-color:var(--navy);color:var(--navy)}
+.page-btn.active{background:var(--navy);color:var(--white);border-color:var(--navy)}
+
+/* Footer */
+.footer{background:var(--g900);color:rgba(255,255,255,.6);padding:72px 0 0}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.08)}
+.footer-brand{max-width:300px}
+.footer-logo{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.fl-icon{width:38px;height:38px;background:var(--navy);border-radius:var(--rs);display:flex;align-items:center;justify-content:center;color:var(--gold);font-family:var(--fd);font-size:18px}
+.fl-text{font-family:var(--fd);font-size:20px;color:var(--white)}.fl-text span{color:var(--gold)}
+.footer-brand p{font-size:14px;line-height:1.7;margin-bottom:20px}
+.footer-social{display:flex;gap:12px}
+.footer-social a{width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.6);transition:all .3s;font-size:14px}
+.footer-social a:hover{border-color:var(--gold);color:var(--gold);background:rgba(200,162,78,.1)}
+.footer-col h4{font-size:14px;font-weight:700;color:var(--white);text-transform:uppercase;letter-spacing:1px;margin-bottom:20px}
+.footer-col ul{list-style:none}.footer-col li{margin-bottom:12px}
+.footer-col a{color:rgba(255,255,255,.5);font-size:14px;transition:color .2s;cursor:pointer}.footer-col a:hover{color:var(--gold)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding:24px 0;font-size:13px;flex-wrap:wrap;gap:12px}
+.footer-legal{display:flex;gap:24px}
+.footer-legal a{color:rgba(255,255,255,.4)}.footer-legal a:hover{color:var(--gold)}
+
+/* Floating */
+.back-top{position:fixed;bottom:32px;right:32px;width:48px;height:48px;border-radius:50%;background:var(--navy);color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:20px;cursor:pointer;border:none;box-shadow:var(--sl);opacity:0;transform:translateY(20px);transition:all .3s;z-index:999}
+.back-top.vis{opacity:1;transform:translateY(0)}.back-top:hover{background:var(--gold);color:var(--navy)}
+.wa-float{position:fixed;bottom:32px;left:32px;width:56px;height:56px;border-radius:50%;background:#25D366;color:white;display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 4px 20px rgba(37,211,102,.4);z-index:999;transition:all .3s;animation:pulse 2s infinite}
+.wa-float:hover{transform:scale(1.1)}
+
+/* Modal */
+.modal-ov{position:fixed;inset:0;background:rgba(11,29,58,.7);backdrop-filter:blur(8px);z-index:10000;display:none;align-items:center;justify-content:center;padding:24px}
+.modal-ov.active{display:flex}
+.modal{background:var(--white);border-radius:var(--rx);max-width:500px;width:100%;padding:48px 40px;position:relative;animation:scaleIn .3s ease}
+.modal-close{position:absolute;top:16px;right:16px;width:36px;height:36px;border-radius:50%;border:none;background:var(--g100);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.modal-close:hover{background:var(--g200)}
+.modal h2{font-family:var(--fd);font-size:28px;color:var(--navy);margin-bottom:8px}
+.modal>p{font-size:15px;color:var(--g500);margin-bottom:28px}
+.modal-form{display:flex;flex-direction:column;gap:14px}
+.fg{display:flex;flex-direction:column;gap:6px}
+.fg label{font-size:13px;font-weight:600;color:var(--g700)}
+.fi{padding:14px 16px;border:1.5px solid var(--g200);border-radius:var(--rs);font-size:15px;font-family:var(--fb)}
+.fi:focus{outline:none;border-color:var(--navy)}
+.fs{padding:14px 16px;border:1.5px solid var(--g200);border-radius:var(--rs);font-size:15px;font-family:var(--fb);background:var(--white);cursor:pointer}
+
+/* Mobile Nav */
+.mob-nav{display:none;position:fixed;inset:0;background:var(--white);z-index:9999;padding:80px 24px 24px;flex-direction:column;overflow-y:auto}
+.mob-nav.active{display:flex}
+.mob-nav-close{position:absolute;top:20px;right:20px;background:none;border:none;font-size:28px;cursor:pointer;color:var(--navy)}
+.mob-nav a{display:block;padding:16px 0;font-size:18px;font-weight:600;color:var(--navy);border-bottom:1px solid var(--g200);cursor:pointer}
+
+/* Responsive */
+@media(max-width:1024px){
+.hero .container{grid-template-columns:1fr}.hero-visual{display:none}.hero h1{font-size:42px}
+.cat-grid,.team-grid{grid-template-columns:repeat(2,1fr)}.feat-grid,.courses-grid,.test-grid{grid-template-columns:repeat(2,1fr)}
+.stats-grid{grid-template-columns:repeat(2,1fr);gap:40px}
+.method-grid{grid-template-columns:1fr;gap:48px}
+.pricing-grid{grid-template-columns:1fr;max-width:420px;margin-left:auto;margin-right:auto}.price-card.feat{transform:none}
+.blog-grid-main{grid-template-columns:1fr}.blog-card{grid-template-columns:200px 1fr}
+.footer-grid{grid-template-columns:1fr 1fr}.course-detail-grid{grid-template-columns:1fr}
+.cd-sidebar-card{position:static}
+}
+@media(max-width:768px){
+.top-bar{display:none}.nav-links{display:none}.mob-toggle{display:block}
+.hero h1,.page-hero h1{font-size:34px}.hero-sub{font-size:16px}.hero-stats{flex-direction:column;gap:20px}
+.sh h2{font-size:32px}.section-pad{padding:60px 0}
+.cat-grid,.feat-grid,.courses-grid,.stats-grid,.team-grid,.test-grid{grid-template-columns:1fr}
+.cta-form{flex-direction:column}.footer-grid{grid-template-columns:1fr;gap:32px}
+.footer-bottom{flex-direction:column;text-align:center}.footer-legal{justify-content:center}
+.blog-card{grid-template-columns:1fr}.blog-card-img{height:180px}
+.cf-row{grid-template-columns:1fr}.compare-table{font-size:12px}.compare-table th,.compare-table td{padding:10px 8px}
+}
+</style>
+</head>
+<body>
+<!-- TOP BAR -->
+<div class="top-bar"><div class="container"><div class="tb-left"><span>📞 900 123 456 (Gratuito)</span><span>✉️ <a href="mailto:info@opositaplus.es">info@opositaplus.es</a></span></div><div class="tb-right"><a href="#">Área de alumnos</a><span>🕐 L-V 9:00 - 21:00</span></div></div></div>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar"><div class="container">
+<div class="logo" onclick="navigate('home')"><div class="logo-icon">O+</div><div><div class="logo-text">Oposita<span>Plus</span></div><div class="logo-sub">Academia de Oposiciones</div></div></div>
+<ul class="nav-links">
+<li><a onclick="navigate('oposiciones')" id="nav-oposiciones">Oposiciones</a></li>
+<li><a onclick="navigate('cursos')" id="nav-cursos">Cursos</a></li>
+<li><a onclick="navigate('metodo')" id="nav-metodo">Método</a></li>
+<li><a onclick="navigate('equipo')" id="nav-equipo">Equipo</a></li>
+<li><a onclick="navigate('precios')" id="nav-precios">Precios</a></li>
+<li><a onclick="navigate('blog')" id="nav-blog">Blog</a></li>
+<li><a class="nav-cta" onclick="openModal()">Inscríbete</a></li>
+</ul>
+<button class="mob-toggle" onclick="toggleMob()"><span></span><span></span><span></span></button>
+</div></nav>
+
+<div class="mob-nav" id="mobNav"><button class="mob-nav-close" onclick="toggleMob()">✕</button>
+<a onclick="navigate('home');toggleMob()">Inicio</a><a onclick="navigate('oposiciones');toggleMob()">Oposiciones</a><a onclick="navigate('cursos');toggleMob()">Cursos</a><a onclick="navigate('metodo');toggleMob()">Método</a><a onclick="navigate('equipo');toggleMob()">Equipo</a><a onclick="navigate('precios');toggleMob()">Precios</a><a onclick="navigate('blog');toggleMob()">Blog</a>
+<a class="btn-primary" style="margin-top:24px;justify-content:center" onclick="openModal();toggleMob()">Inscríbete ahora</a></div>
+
+<!-- ========== HOME ========== -->
+<div id="page-home" class="page active">
+<section class="hero"><div class="hero-pat"></div><div class="container">
+<div>
+<div class="hero-badge">⭐ Convocatorias 2025-2026 abiertas</div>
+<h1>Tu plaza te espera.<br>Prepárate con los <em>mejores</em></h1>
+<p class="hero-sub">Más de 15 años formando opositores de éxito. Temarios actualizados, tutorías personalizadas y la metodología que ya ha cambiado la vida de miles de personas.</p>
+<div class="hero-ctas"><a class="btn-primary" onclick="openModal()">Solicita información gratuita →</a><a class="btn-outline" onclick="navigate('metodo')">▶ Ver nuestro método</a></div>
+<div class="hero-stats"><div><div class="hero-stat-num">93%</div><div class="hero-stat-label">Tasa de aprobados</div></div><div><div class="hero-stat-num">12.400+</div><div class="hero-stat-label">Alumnos formados</div></div><div><div class="hero-stat-num">+200</div><div class="hero-stat-label">Preparadores</div></div></div>
+</div>
+<div class="hero-visual"><div class="hero-card">
+<div class="hero-card-header"><div class="hero-card-avatar">👩‍🎓</div><div class="hero-card-info"><h4>María García López</h4><p>Preparando: Auxiliar Administrativo</p></div></div>
+<div><div style="display:flex;justify-content:space-between;font-size:13px;font-weight:500;color:var(--g700)"><span>Progreso</span><span style="color:var(--ok);font-weight:700">78%</span></div><div class="progress-bar"><div class="progress-fill" style="width:78%"></div></div></div>
+<div class="hero-card-subjects"><div class="subj-row"><span>📘 Constitución Española</span><div class="subj-check">✓</div></div><div class="subj-row"><span>📗 Ley 39/2015</span><div class="subj-check">✓</div></div><div class="subj-row"><span>📙 Organización del Estado</span><div class="subj-check">✓</div></div><div class="subj-row"><span>📕 Derecho de la UE</span><div class="subj-pending"></div></div></div>
+</div><div class="hero-float hf1"><div style="font-size:28px">🏆</div><div><div style="font-size:13px;font-weight:600;color:var(--ok)">¡Plaza obtenida!</div><div style="font-size:11px;color:var(--g500)">Hace 2 horas</div></div></div><div class="hero-float hf2"><div style="color:var(--gold);font-size:14px">★★★★★</div><div style="font-size:12px;font-weight:600;color:var(--g700)">4.9/5 Google</div></div></div>
+</div></section>
+
+<section class="trust-bar"><div class="container"><div class="trust-label">Confían en nuestra formación</div><div class="trust-logos"><div class="trust-logo">🏛️ Min. Justicia</div><div class="trust-logo">🏥 SACYL</div><div class="trust-logo">📚 UNED</div><div class="trust-logo">⚖️ CGPJ</div><div class="trust-logo">🏦 Banco de España</div></div></div></section>
+
+<section class="section-pad" style="background:var(--cream)"><div class="container">
+<div class="sh anim"><div class="sh-tag">Categorías</div><h2>Todas las oposiciones<br>a tu alcance</h2><p>Elige tu camino hacia la estabilidad laboral.</p></div>
+<div class="cat-grid">
+<div class="cat-card anim ad1" onclick="navigate('oposiciones')"><div class="cat-icon ci1">⚖️</div><h3>Justicia</h3><p>Auxilio, tramitación, gestión procesal</p><span class="cat-count">12 cursos</span></div>
+<div class="cat-card anim ad2" onclick="navigate('oposiciones')"><div class="cat-icon ci2">🏛️</div><h3>Administración</h3><p>Auxiliar, administrativo, técnico AGE</p><span class="cat-count">18 cursos</span></div>
+<div class="cat-card anim ad3" onclick="navigate('oposiciones')"><div class="cat-icon ci3">🏥</div><h3>Sanidad</h3><p>Enfermería, celador, auxiliar SAS</p><span class="cat-count">15 cursos</span></div>
+<div class="cat-card anim ad4" onclick="navigate('oposiciones')"><div class="cat-icon ci4">📚</div><h3>Educación</h3><p>Maestros, profesores, inspectores</p><span class="cat-count">10 cursos</span></div>
+</div><div style="text-align:center;margin-top:40px"><a class="btn-gold-outline" onclick="navigate('oposiciones')">Ver todas →</a></div>
+</div></section>
+
+<section class="section-pad" style="background:var(--white)"><div class="container">
+<div class="sh anim"><div class="sh-tag">Ventajas</div><h2>Todo lo que necesitas</h2></div>
+<div class="feat-grid">
+<div class="feat-card anim ad1"><div class="feat-icon">📖</div><h3>Temarios actualizados</h3><p>Revisados tras cada BOE por especialistas en cada materia.</p></div>
+<div class="feat-card anim ad2"><div class="feat-icon">🎯</div><h3>Test con IA</h3><p>Test personalizados que refuerzan tus puntos débiles.</p></div>
+<div class="feat-card anim ad3"><div class="feat-icon">👨‍🏫</div><h3>Tutorías 1 a 1</h3><p>Sesiones semanales con tu preparador personal.</p></div>
+<div class="feat-card anim ad1"><div class="feat-icon">📱</div><h3>Campus 24/7</h3><p>Clases, esquemas, flashcards desde cualquier dispositivo.</p></div>
+<div class="feat-card anim ad2"><div class="feat-icon">📝</div><h3>Simulacros</h3><p>Exámenes tipo convocatoria con corrección y ranking.</p></div>
+<div class="feat-card anim ad3"><div class="feat-icon">🤝</div><h3>Comunidad</h3><p>Grupo de estudio, foros temáticos y apoyo mutuo.</p></div>
+</div></div></section>
+
+<section class="stats-section"><div class="container"><div class="stats-grid">
+<div class="stat-item anim"><div class="stat-number">12.400+</div><div class="stat-label">Alumnos</div><div class="stat-div"></div></div>
+<div class="stat-item anim ad1"><div class="stat-number">93%</div><div class="stat-label">Aprobados</div><div class="stat-div"></div></div>
+<div class="stat-item anim ad2"><div class="stat-number">+200</div><div class="stat-label">Preparadores</div><div class="stat-div"></div></div>
+<div class="stat-item anim ad3"><div class="stat-number">15</div><div class="stat-label">Años</div><div class="stat-div"></div></div>
+</div></div></section>
+
+<section class="section-pad" style="background:var(--white)"><div class="container">
+<div class="sh anim"><div class="sh-tag">Testimonios</div><h2>Opiniones de aprobados</h2></div>
+<div class="test-grid">
+<div class="test-card anim ad1"><div class="test-stars">★★★★★</div><div class="test-text">"Aprobé en 8 meses tras 2 años en otra academia. La diferencia es el trato personalizado."</div><div class="test-author"><div class="test-avatar">RG</div><div><div style="font-weight:700;font-size:14px;color:var(--navy)">Roberto García</div><div style="font-size:12px;color:var(--g500)">Tramitación — 2024</div></div></div></div>
+<div class="test-card anim ad2"><div class="test-stars">★★★★★</div><div class="test-text">"Trabajo a jornada completa y mi preparadora adaptó todo a mis horarios. La plataforma es increíble."</div><div class="test-author"><div class="test-avatar">SL</div><div><div style="font-weight:700;font-size:14px;color:var(--navy)">Sara López</div><div style="font-size:12px;color:var(--g500)">Auxiliar Admin. — 2025</div></div></div></div>
+<div class="test-card anim ad3"><div class="test-stars">★★★★★</div><div class="test-text">"Los test con IA y los simulacros corregidos son de otro nivel. 100% recomendable."</div><div class="test-author"><div class="test-avatar">DM</div><div><div style="font-weight:700;font-size:14px;color:var(--navy)">David Moreno</div><div style="font-size:12px;color:var(--g500)">Policía Nacional — 2024</div></div></div></div>
+</div></div></section>
+
+<section class="cta-sec"><div class="container"><div class="cta-content"><h2>Tu plaza empieza aquí</h2><p class="cta-desc">Únete a más de 12.400 opositores.</p><div class="cta-form"><input type="email" class="cta-input" placeholder="Tu email"><a class="btn-primary" onclick="openModal()">Empezar →</a></div></div></div></section>
+</div>
+
+<!-- ========== OPOSICIONES ========== -->
+<div id="page-oposiciones" class="page">
+<section class="page-hero"><div class="container"><div class="breadcrumb"><a onclick="navigate('home')">Inicio</a> / Oposiciones</div><h1>Todas las <em>oposiciones</em></h1><p class="page-hero-desc">8 categorías, +84 cursos. Encuentra tu oposición ideal.</p></div></section>
+<section class="section-pad" style="background:var(--cream)"><div class="container">
+<div class="tabs tabs-center"><button class="tab active" onclick="filterCats(this,'all')">Todas</button><button class="tab" onclick="filterCats(this,'justicia')">Justicia</button><button class="tab" onclick="filterCats(this,'admin')">Administración</button><button class="tab" onclick="filterCats(this,'sanidad')">Sanidad</button><button class="tab" onclick="filterCats(this,'educacion')">Educación</button><button class="tab" onclick="filterCats(this,'seguridad')">Seguridad</button><button class="tab" onclick="filterCats(this,'hacienda')">Hacienda</button></div>
+<div class="cat-grid" id="catGrid">
+<div class="cat-card anim ad1" data-cat="justicia"><div class="cat-icon ci1">⚖️</div><h3>Auxilio Judicial</h3><p>Grupo C2</p><span class="cat-count">3 cursos</span></div>
+<div class="cat-card anim ad2" data-cat="justicia"><div class="cat-icon ci1">⚖️</div><h3>Tramitación Procesal</h3><p>Grupo C1</p><span class="cat-count">3 cursos</span></div>
+<div class="cat-card anim ad3" data-cat="justicia"><div class="cat-icon ci1">⚖️</div><h3>Gestión Procesal</h3><p>Grupo A2</p><span class="cat-count">3 cursos</span></div>
+<div class="cat-card anim ad4" data-cat="admin"><div class="cat-icon ci2">🏛️</div><h3>Auxiliar Administrativo</h3><p>Grupo C2</p><span class="cat-count">4 cursos</span></div>
+<div class="cat-card anim ad1" data-cat="admin"><div class="cat-icon ci2">🏛️</div><h3>Administrativo AGE</h3><p>Grupo C1</p><span class="cat-count">4 cursos</span></div>
+<div class="cat-card anim ad2" data-cat="admin"><div class="cat-icon ci2">🏛️</div><h3>Técnico Superior</h3><p>Grupo A1</p><span class="cat-count">3 cursos</span></div>
+<div class="cat-card anim ad3" data-cat="sanidad"><div class="cat-icon ci3">🏥</div><h3>Celador/a</h3><p>SAS, SERMAS, SACYL</p><span class="cat-count">5 cursos</span></div>
+<div class="cat-card anim ad4" data-cat="sanidad"><div class="cat-icon ci3">🏥</div><h3>Enfermería</h3><p>Servicios autonómicos</p><span class="cat-count">4 cursos</span></div>
+<div class="cat-card anim ad1" data-cat="educacion"><div class="cat-icon ci4">📚</div><h3>Maestro Primaria</h3><p>Cuerpo de Maestros</p><span class="cat-count">4 cursos</span></div>
+<div class="cat-card anim ad2" data-cat="educacion"><div class="cat-icon ci4">📚</div><h3>Profesor Secundaria</h3><p>Cuerpo de Profesores</p><span class="cat-count">3 cursos</span></div>
+<div class="cat-card anim ad3" data-cat="seguridad"><div class="cat-icon ci5">🔒</div><h3>Policía Nacional</h3><p>Escala Básica</p><span class="cat-count">3 cursos</span></div>
+<div class="cat-card anim ad4" data-cat="seguridad"><div class="cat-icon ci5">🔒</div><h3>Guardia Civil</h3><p>Cabos y Guardias</p><span class="cat-count">3 cursos</span></div>
+<div class="cat-card anim ad1" data-cat="hacienda"><div class="cat-icon ci6">💰</div><h3>Técnico Hacienda</h3><p>Agencia Tributaria</p><span class="cat-count">3 cursos</span></div>
+<div class="cat-card anim ad2" data-cat="hacienda"><div class="cat-icon ci6">💰</div><h3>Inspector Hacienda</h3><p>Cuerpo Superior</p><span class="cat-count">2 cursos</span></div>
+</div></div></section>
+<section class="cta-sec"><div class="container"><div class="cta-content"><h2>¿No encuentras tu oposición?</h2><p class="cta-desc">Llámanos al 900 123 456.</p><a class="btn-primary" onclick="openModal()">Contactar →</a></div></div></section>
+</div>
+
+<!-- ========== CURSOS ========== -->
+<div id="page-cursos" class="page">
+<section class="page-hero"><div class="container"><div class="breadcrumb"><a onclick="navigate('home')">Inicio</a> / Cursos</div><h1>Cursos <em>destacados</em></h1><p class="page-hero-desc">Programas completos con temario, test, simulacros y tutoría.</p></div></section>
+<section class="section-pad" style="background:var(--cream)"><div class="container">
+<div class="tabs tabs-center"><button class="tab active" onclick="filterCourses(this,'all')">Todos</button><button class="tab" onclick="filterCourses(this,'justicia')">Justicia</button><button class="tab" onclick="filterCourses(this,'admin')">Administración</button><button class="tab" onclick="filterCourses(this,'sanidad')">Sanidad</button><button class="tab" onclick="filterCourses(this,'educacion')">Educación</button><button class="tab" onclick="filterCourses(this,'seguridad')">Seguridad</button></div>
+<div class="courses-grid" id="coursesGrid">
+<div class="course-card anim ad1" data-ccat="justicia"><div class="course-img ci-1" onclick="navigate('curso-detalle')" style="cursor:pointer"><span style="font-size:56px;opacity:.8">⚖️</span><span class="course-badge badge-pop">★ Popular</span></div><div class="course-body"><div class="course-cat">Justicia</div><h3 onclick="navigate('curso-detalle')" style="cursor:pointer">Auxilio Judicial</h3><p class="course-desc">Preparación integral. Temario completo actualizado.</p><div class="course-meta"><span>📅 12 meses</span><span>📚 28 temas</span><span>👥 340</span></div><div class="course-footer"><div class="course-price">89€ <small>/mes</small></div><button class="course-enroll" onclick="openModal()">Inscribirse</button></div></div></div>
+<div class="course-card anim ad2" data-ccat="admin"><div class="course-img ci-2"><span style="font-size:56px;opacity:.8">🏛️</span><span class="course-badge badge-new">Nuevo</span></div><div class="course-body"><div class="course-cat">Administración</div><h3>Administrativo (C1)</h3><p class="course-desc">Curso completo para la AGE.</p><div class="course-meta"><span>📅 18 meses</span><span>📚 42 temas</span><span>👥 280</span></div><div class="course-footer"><div class="course-price">109€ <small>/mes</small></div><button class="course-enroll" onclick="openModal()">Inscribirse</button></div></div></div>
+<div class="course-card anim ad3" data-ccat="sanidad"><div class="course-img ci-3"><span style="font-size:56px;opacity:.8">🏥</span><span class="course-badge badge-int">Intensivo</span></div><div class="course-body"><div class="course-cat">Sanidad</div><h3>Celador/a SAS</h3><p class="course-desc">Programa intensivo para el SAS.</p><div class="course-meta"><span>📅 8 meses</span><span>📚 20 temas</span><span>👥 420</span></div><div class="course-footer"><div class="course-price">79€ <small>/mes</small></div><button class="course-enroll" onclick="openModal()">Inscribirse</button></div></div></div>
+<div class="course-card anim ad1" data-ccat="educacion"><div class="course-img ci-4"><span style="font-size:56px;opacity:.8">📚</span><span class="course-badge badge-pop">★ Popular</span></div><div class="course-body"><div class="course-cat">Educación</div><h3>Maestro Primaria</h3><p class="course-desc">Programa premium de preparación.</p><div class="course-meta"><span>📅 14 meses</span><span>📚 25 temas</span><span>👥 310</span></div><div class="course-footer"><div class="course-price">99€ <small>/mes</small></div><button class="course-enroll" onclick="openModal()">Inscribirse</button></div></div></div>
+<div class="course-card anim ad2" data-ccat="seguridad"><div class="course-img ci-5"><span style="font-size:56px;opacity:.8">🔒</span></div><div class="course-body"><div class="course-cat">Seguridad</div><h3>Policía Nacional</h3><p class="course-desc">Psicotécnicos, físicas, temario y entrevista.</p><div class="course-meta"><span>📅 12 meses</span><span>📚 34 temas</span><span>👥 260</span></div><div class="course-footer"><div class="course-price">119€ <small>/mes</small></div><button class="course-enroll" onclick="openModal()">Inscribirse</button></div></div></div>
+<div class="course-card anim ad3" data-ccat="admin"><div class="course-img ci-6"><span style="font-size:56px;opacity:.8">🏛️</span><span class="course-badge badge-new">Nuevo</span></div><div class="course-body"><div class="course-cat">Administración</div><h3>Auxiliar Admin. AGE</h3><p class="course-desc">El más demandado. Test ilimitados y tutoría.</p><div class="course-meta"><span>📅 10 meses</span><span>📚 22 temas</span><span>👥 510</span></div><div class="course-footer"><div class="course-price">69€ <small>/mes</small></div><button class="course-enroll" onclick="openModal()">Inscribirse</button></div></div></div>
+</div></div></section></div>
+
+<!-- ========== CURSO DETALLE ========== -->
+<div id="page-curso-detalle" class="page">
+<section class="page-hero"><div class="container"><div class="breadcrumb"><a onclick="navigate('home')">Inicio</a> / <a onclick="navigate('cursos')">Cursos</a> / Auxilio Judicial</div><h1>Auxilio <em>Judicial</em></h1><p class="page-hero-desc">Preparación integral. Convocatoria 2025-2026.</p></div></section>
+<section class="section-pad" style="background:var(--cream)"><div class="container"><div class="course-detail-grid">
+<div class="cd-main">
+<h2 style="margin-top:0">Sobre este curso</h2><p>Temario actualizado, +8.000 preguntas test con IA, simulacros quincenales y tutoría semanal.</p>
+<h2>Temario (28 temas)</h2>
+<ul class="cd-temario"><li>La Constitución Española de 1978</li><li>Derechos y deberes fundamentales</li><li>La Corona. Las Cortes Generales</li><li>El Gobierno y la Administración</li><li>Organización territorial del Estado</li><li>La Unión Europea</li><li>LOPJ (I)</li><li>LOPJ (II)</li><li>Organización de Tribunales (I)</li><li>Organización de Tribunales (II)</li><li>Personal de Justicia</li><li>Funciones del Auxilio Judicial</li></ul>
+<p style="font-size:13px;color:var(--g500)">12 de 28 temas mostrados.</p>
+<h2>Incluye</h2>
+<div class="feat-grid" style="margin-top:20px"><div class="feat-card"><div class="feat-icon">📖</div><h3>Temario</h3><p>28 temas en formato digital.</p></div><div class="feat-card"><div class="feat-icon">🎯</div><h3>+8.000 test</h3><p>Test adaptativos con IA.</p></div><div class="feat-card"><div class="feat-icon">📝</div><h3>Simulacros</h3><p>Quincenales con corrección.</p></div></div>
+</div>
+<div><div class="cd-sidebar-card"><div class="price-big">89€<small style="font-size:20px;color:var(--g500);font-family:var(--fb)">/mes</small></div><div class="price-sub">Sin matrícula · Sin permanencia</div>
+<ul class="cd-includes"><li>Temario completo (28 temas)</li><li>Test ilimitados con IA</li><li>Simulacros quincenales</li><li>Tutoría semanal</li><li>Dudas en 24h</li><li>Esquemas y flashcards</li><li>Clases grabadas HD</li></ul>
+<button class="btn-primary" style="width:100%;justify-content:center" onclick="openModal()">Inscribirme →</button></div></div>
+</div></div></section></div>
+
+<!-- ========== MÉTODO ========== -->
+<div id="page-metodo" class="page">
+<section class="page-hero"><div class="container"><div class="breadcrumb"><a onclick="navigate('home')">Inicio</a> / Método</div><h1>Nuestro <em>método</em></h1><p class="page-hero-desc">15 años de experiencia en una metodología probada.</p></div></section>
+<section class="section-pad" style="background:var(--cream)"><div class="container"><div class="method-grid">
+<div class="method-steps">
+<div class="method-step anim ad1"><div class="step-num">1</div><div class="step-content"><h4>Diagnóstico personalizado</h4><p>Plan de estudio 100% adaptado a tu nivel y tiempo disponible.</p></div></div>
+<div class="method-step anim ad2"><div class="step-num">2</div><div class="step-content"><h4>Estudio guiado</h4><p>Preparador personal: clases en vivo, dudas y seguimiento semanal.</p></div></div>
+<div class="method-step anim ad3"><div class="step-num">3</div><div class="step-content"><h4>Práctica con IA</h4><p>Test adaptativos y simulacros reales cada 2 semanas.</p></div></div>
+<div class="method-step anim ad4"><div class="step-num">4</div><div class="step-content"><h4>Ajuste continuo</h4><p>Dashboard de progreso, ranking y ajustes automáticos.</p></div></div>
+</div>
+<div class="method-visual anim ad2"><div class="mv-content"><div style="font-size:48px;margin-bottom:24px">🎓</div><div class="method-quote">"Aprobé a la primera gracias a la <em>dedicación personalizada</em> de mi preparador."</div><div class="method-author"><div class="ma-avatar">LP</div><div><div style="font-weight:600;color:var(--white)">Laura Pérez</div><div style="font-size:13px;color:rgba(255,255,255,.5)">Auxilio Judicial — 2024</div></div></div></div></div>
+</div></div></section>
+<section class="section-pad" style="background:var(--white)"><div class="container">
+<div class="sh anim"><div class="sh-tag">Tecnología</div><h2>Herramientas avanzadas</h2></div>
+<div class="feat-grid">
+<div class="feat-card anim ad1"><div class="feat-icon">🤖</div><h3>Test IA</h3><p>Algoritmo que refuerza tus áreas débiles automáticamente.</p></div>
+<div class="feat-card anim ad2"><div class="feat-icon">📊</div><h3>Dashboard</h3><p>Tu evolución en tiempo real con métricas y ranking.</p></div>
+<div class="feat-card anim ad3"><div class="feat-icon">🧠</div><h3>Repetición espaciada</h3><p>Repasos programados en el momento óptimo.</p></div>
+<div class="feat-card anim ad1"><div class="feat-icon">📱</div><h3>App móvil</h3><p>Estudia donde quieras: test, repasos, flashcards.</p></div>
+<div class="feat-card anim ad2"><div class="feat-icon">🎥</div><h3>Clases HD</h3><p>En directo o grabadas. Revísalas cuando quieras.</p></div>
+<div class="feat-card anim ad3"><div class="feat-icon">💬</div><h3>Comunidad</h3><p>Foros, grupos de estudio y eventos con aprobados.</p></div>
+</div></div></section>
+<section class="cta-sec"><div class="container"><div class="cta-content"><h2>Prueba sin compromiso</h2><p class="cta-desc">Clase de prueba gratuita.</p><a class="btn-primary" onclick="openModal()">Clase gratis →</a></div></div></section>
+</div>
+
+<!-- ========== EQUIPO ========== -->
+<div id="page-equipo" class="page">
+<section class="page-hero"><div class="container"><div class="breadcrumb"><a onclick="navigate('home')">Inicio</a> / Equipo</div><h1>Nuestro <em>equipo</em></h1><p class="page-hero-desc">Funcionarios que ya tienen su plaza y te ayudan a conseguir la tuya.</p></div></section>
+<section class="section-pad" style="background:var(--cream)"><div class="container">
+<div class="sh anim"><div class="sh-tag">Dirección</div><h2>Equipo directivo</h2></div>
+<div class="team-grid" style="grid-template-columns:repeat(3,1fr);max-width:900px;margin:0 auto">
+<div class="team-card anim ad1"><div class="team-photo"><div class="team-ph">PV</div></div><div class="team-info"><h3>Pablo Velasco</h3><div class="role">CEO & Fundador</div><p>Abogado del Estado. Fundó OpositaPlus en 2011.</p></div></div>
+<div class="team-card anim ad2"><div class="team-photo"><div class="team-ph">EM</div></div><div class="team-info"><h3>Elena Márquez</h3><div class="role">Dir. Académica</div><p>TAC del Estado. 18 años de experiencia.</p></div></div>
+<div class="team-card anim ad3"><div class="team-photo"><div class="team-ph">AG</div></div><div class="team-info"><h3>Álvaro García</h3><div class="role">Dir. Tecnología</div><p>Responsable de la plataforma de IA.</p></div></div>
+</div></div></section>
+<section class="section-pad" style="background:var(--white)"><div class="container">
+<div class="sh anim"><div class="sh-tag">Preparadores</div><h2>Responsables por área</h2></div>
+<div class="team-grid">
+<div class="team-card anim ad1"><div class="team-photo"><div class="team-ph">CR</div></div><div class="team-info"><h3>Carlos Ruiz</h3><div class="role">Justicia</div><p>Letrado de Justicia. 20 años.</p></div></div>
+<div class="team-card anim ad2"><div class="team-photo"><div class="team-ph">AM</div></div><div class="team-info"><h3>Ana Martínez</h3><div class="role">Administración</div><p>Técnica Superior AGE. Nº 3 de su promoción.</p></div></div>
+<div class="team-card anim ad3"><div class="team-photo"><div class="team-ph">JF</div></div><div class="team-info"><h3>Javier Fernández</h3><div class="role">Seguridad</div><p>Inspector CNP.</p></div></div>
+<div class="team-card anim ad4"><div class="team-photo"><div class="team-ph">MH</div></div><div class="team-info"><h3>Marta Hernández</h3><div class="role">Sanidad</div><p>Enfermera SERMAS.</p></div></div>
+<div class="team-card anim ad1"><div class="team-photo"><div class="team-ph">LR</div></div><div class="team-info"><h3>Luis Rodríguez</h3><div class="role">Educación</div><p>Catedrático. 15 años.</p></div></div>
+<div class="team-card anim ad2"><div class="team-photo"><div class="team-ph">IS</div></div><div class="team-info"><h3>Isabel Sánchez</h3><div class="role">Hacienda</div><p>Inspectora de Hacienda.</p></div></div>
+<div class="team-card anim ad3"><div class="team-photo"><div class="team-ph">RN</div></div><div class="team-info"><h3>Rafael Navarro</h3><div class="role">Unión Europea</div><p>Funcionario EPSO.</p></div></div>
+<div class="team-card anim ad4"><div class="team-photo"><div class="team-ph">PG</div></div><div class="team-info"><h3>Patricia Gómez</h3><div class="role">Psicología</div><p>Coaching para opositores.</p></div></div>
+</div></div></section>
+<section class="stats-section"><div class="container"><div class="stats-grid">
+<div class="stat-item anim"><div class="stat-number">+200</div><div class="stat-label">Preparadores</div><div class="stat-div"></div></div>
+<div class="stat-item anim ad1"><div class="stat-number">98%</div><div class="stat-label">Funcionarios</div><div class="stat-div"></div></div>
+<div class="stat-item anim ad2"><div class="stat-number">12</div><div class="stat-label">Años exp. media</div><div class="stat-div"></div></div>
+<div class="stat-item anim ad3"><div class="stat-number">4.9★</div><div class="stat-label">Valoración</div><div class="stat-div"></div></div>
+</div></div></section></div>
+
+<!-- ========== PRECIOS ========== -->
+<div id="page-precios" class="page">
+<section class="page-hero"><div class="container"><div class="breadcrumb"><a onclick="navigate('home')">Inicio</a> / Precios</div><h1>Planes y <em>precios</em></h1><p class="page-hero-desc">Sin permanencia, sin letra pequeña.</p></div></section>
+<section class="section-pad" style="background:var(--cream)"><div class="container">
+<div class="pricing-grid">
+<div class="price-card anim ad1"><h3>Online</h3><p class="price-desc">A tu ritmo</p><div class="price-amount">69€<small>/mes</small></div><div class="price-period">Sin matrícula</div><ul class="price-features"><li>Temario completo</li><li>Test ilimitados</li><li>Clases HD</li><li>Simulacros quincenales</li><li>Foro dudas 48h</li><li>Esquemas y flashcards</li></ul><button class="price-btn price-btn-o" onclick="openModal()">Empezar</button></div>
+<div class="price-card feat anim ad2"><h3>Premium</h3><p class="price-desc">El más elegido</p><div class="price-amount">109€<small>/mes</small></div><div class="price-period">Sin matrícula</div><ul class="price-features"><li>Todo lo del Online</li><li>Tutoría semanal 1a1</li><li>Test IA adaptativos</li><li>Corrección personalizada</li><li>Grupo exclusivo</li><li>Dudas en 24h</li><li>Plan personalizado</li></ul><button class="price-btn price-btn-f" onclick="openModal()">Elegir Premium</button></div>
+<div class="price-card anim ad3"><h3>Intensivo</h3><p class="price-desc">Máxima dedicación</p><div class="price-amount">179€<small>/mes</small></div><div class="price-period">Sin matrícula</div><ul class="price-features"><li>Todo lo del Premium</li><li>2 tutorías/semana</li><li>Simulacros semanales</li><li>Prep. oral/práctica</li><li>Coaching</li><li>Dudas inmediatas</li><li>Masterclasses VIP</li></ul><button class="price-btn price-btn-o" onclick="openModal()">Elegir Intensivo</button></div>
+</div>
+<table class="compare-table anim"><thead><tr><th>Característica</th><th>Online</th><th>Premium</th><th>Intensivo</th></tr></thead><tbody>
+<tr><td>Temario</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td></tr>
+<tr><td>Test ilimitados</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td></tr>
+<tr><td>Simulacros</td><td>Quincenal</td><td>Quincenal</td><td>Semanal</td></tr>
+<tr><td>Test IA</td><td class="cross">✗</td><td class="check">✓</td><td class="check">✓</td></tr>
+<tr><td>Tutoría</td><td class="cross">✗</td><td>1/sem</td><td>2/sem</td></tr>
+<tr><td>Dudas</td><td>48h</td><td>24h</td><td>Inmediata</td></tr>
+<tr><td>Plan personal</td><td class="cross">✗</td><td class="check">✓</td><td class="check">✓</td></tr>
+<tr><td>Coaching</td><td class="cross">✗</td><td class="cross">✗</td><td class="check">✓</td></tr>
+</tbody></table>
+</div></section>
+<section class="section-pad" style="background:var(--white)"><div class="container">
+<div class="sh anim"><div class="sh-tag">FAQ</div><h2>Preguntas sobre precios</h2></div>
+<div class="faq-grid">
+<div class="faq-item anim"><div class="faq-q" onclick="toggleFaq(this)">¿Hay matrícula?<div class="faq-icon">+</div></div><div class="faq-a"><div class="faq-a-inner">No. Sin matrícula, sin gastos de inscripción, sin letra pequeña.</div></div></div>
+<div class="faq-item anim ad1"><div class="faq-q" onclick="toggleFaq(this)">¿Puedo cambiar de plan?<div class="faq-icon">+</div></div><div class="faq-a"><div class="faq-a-inner">Sí, en cualquier momento. Se aplica el siguiente periodo.</div></div></div>
+<div class="faq-item anim ad2"><div class="faq-q" onclick="toggleFaq(this)">¿Descuento anual?<div class="faq-icon">+</div></div><div class="faq-a"><div class="faq-a-inner">Pago anual = 2 meses gratis. Trimestral = 1 mes gratis.</div></div></div>
+</div></div></section></div>
+
+<!-- ========== BLOG ========== -->
+<div id="page-blog" class="page">
+<section class="page-hero"><div class="container"><div class="breadcrumb"><a onclick="navigate('home')">Inicio</a> / Blog</div><h1>Blog <em>OpositaPlus</em></h1><p class="page-hero-desc">Artículos y consejos de nuestros preparadores.</p></div></section>
+<section class="section-pad" style="background:var(--cream)"><div class="container">
+<div class="tabs"><button class="tab active" onclick="filterBlog(this,'all')">Todos</button><button class="tab" onclick="filterBlog(this,'convocatorias')">Convocatorias</button><button class="tab" onclick="filterBlog(this,'tecnicas')">Técnicas</button><button class="tab" onclick="filterBlog(this,'psicologia')">Psicología</button><button class="tab" onclick="filterBlog(this,'experiencias')">Experiencias</button><button class="tab" onclick="filterBlog(this,'legal')">Legal</button></div>
+<div class="blog-grid-main">
+<div class="blog-posts" id="blogPosts">
+<div class="blog-card anim" data-bcat="convocatorias" onclick="navigate('blog-detalle')"><div class="blog-card-img ci-1">📋</div><div class="blog-card-body"><span class="blog-tag">Convocatorias</span><h3>OEP 2025-2026: Todas las plazas confirmadas</h3><p>+40.000 plazas en Justicia, Administración, Sanidad y Seguridad.</p><div class="blog-meta"><div class="blog-meta-author"><div class="bm-avatar">CR</div>C. Ruiz</div><span>12 Feb</span><span>8 min</span></div></div></div>
+<div class="blog-card anim ad1" data-bcat="tecnicas" onclick="navigate('blog-detalle')"><div class="blog-card-img ci-3">🧠</div><div class="blog-card-body"><span class="blog-tag">Técnicas</span><h3>Repetición espaciada: memoriza 40 temas</h3><p>La técnica basada en neurociencia de nuestros aprobados.</p><div class="blog-meta"><div class="blog-meta-author"><div class="bm-avatar">AM</div>A. Martínez</div><span>8 Feb</span><span>5 min</span></div></div></div>
+<div class="blog-card anim ad2" data-bcat="psicologia" onclick="navigate('blog-detalle')"><div class="blog-card-img ci-4">😌</div><div class="blog-card-body"><span class="blog-tag">Psicología</span><h3>Ansiedad pre-examen: guía completa</h3><p>Estrategias para rendir al máximo el día D.</p><div class="blog-meta"><div class="blog-meta-author"><div class="bm-avatar">PG</div>P. Gómez</div><span>3 Feb</span><span>6 min</span></div></div></div>
+<div class="blog-card anim ad3" data-bcat="experiencias" onclick="navigate('blog-detalle')"><div class="blog-card-img ci-2">🏆</div><div class="blog-card-body"><span class="blog-tag">Experiencias</span><h3>De opositora a funcionaria: historia de Ana</h3><p>Trabajo, familia y oposiciones en 14 meses.</p><div class="blog-meta"><div class="blog-meta-author"><div class="bm-avatar">SL</div>S. López</div><span>28 Ene</span><span>4 min</span></div></div></div>
+<div class="blog-card anim ad4" data-bcat="legal" onclick="navigate('blog-detalle')"><div class="blog-card-img ci-5">📖</div><div class="blog-card-body"><span class="blog-tag">Legal</span><h3>Ley 39/2015: los 10 artículos clave</h3><p>Resumen práctico con esquemas descargables.</p><div class="blog-meta"><div class="blog-meta-author"><div class="bm-avatar">CR</div>C. Ruiz</div><span>20 Ene</span><span>7 min</span></div></div></div>
+<div class="blog-card anim ad5" data-bcat="convocatorias" onclick="navigate('blog-detalle')"><div class="blog-card-img ci-6">📢</div><div class="blog-card-body"><span class="blog-tag">Convocatorias</span><h3>Nuevas plazas Celador SAS</h3><p>Análisis completo de la convocatoria andaluza.</p><div class="blog-meta"><div class="blog-meta-author"><div class="bm-avatar">MH</div>M. Hernández</div><span>15 Ene</span><span>5 min</span></div></div></div>
+</div>
+<div class="blog-sidebar">
+<div class="sidebar-box"><h4>🔍 Buscar</h4><input type="text" placeholder="Buscar artículos..." style="width:100%;padding:12px;border:1.5px solid var(--g200);border-radius:var(--rs);font-size:14px;font-family:var(--fb)"></div>
+<div class="sidebar-box"><h4>📂 Categorías</h4><ul class="sidebar-cats"><li><a onclick="filterBlog(null,'convocatorias')">Convocatorias</a><span>12</span></li><li><a onclick="filterBlog(null,'tecnicas')">Técnicas</a><span>18</span></li><li><a onclick="filterBlog(null,'psicologia')">Psicología</a><span>9</span></li><li><a onclick="filterBlog(null,'experiencias')">Experiencias</a><span>24</span></li><li><a onclick="filterBlog(null,'legal')">Legal</a><span>15</span></li></ul></div>
+<div class="sidebar-box"><h4>🔥 Más leídos</h4><ul class="sidebar-popular"><li><a onclick="navigate('blog-detalle')">OEP 2025-2026: Todas las plazas</a><small>12 Feb · 8 min</small></li><li><a onclick="navigate('blog-detalle')">Ley 39/2015: artículos clave</a><small>20 Ene · 7 min</small></li><li><a onclick="navigate('blog-detalle')">Repetición espaciada</a><small>8 Feb · 5 min</small></li></ul></div>
+<div class="sidebar-box sidebar-newsletter"><h4>📧 Newsletter</h4><p>Artículos y test gratis cada semana.</p><input type="email" placeholder="Tu email" style="width:100%;padding:12px;border:1.5px solid var(--g200);border-radius:var(--rs);font-size:14px;font-family:var(--fb);margin-bottom:10px"><button class="btn-dark btn-sm" style="width:100%">Suscribirme</button></div>
+</div></div>
+<div class="pagination"><button class="page-btn active">1</button><button class="page-btn">2</button><button class="page-btn">3</button><button class="page-btn">→</button></div>
+</div></section></div>
+
+<!-- ========== BLOG DETALLE ========== -->
+<div id="page-blog-detalle" class="page">
+<section class="page-hero" style="padding-bottom:40px"><div class="container"><div class="breadcrumb"><a onclick="navigate('home')">Inicio</a> / <a onclick="navigate('blog')">Blog</a> / Artículo</div></div></section>
+<section class="section-pad" style="background:var(--cream);padding-top:40px"><div class="container"><div class="blog-detail">
+<div class="blog-detail-hero"><span class="blog-tag">Convocatorias</span><h1>OEP 2025-2026: Todas las plazas confirmadas y fechas de examen</h1><div class="blog-meta" style="justify-content:center"><div class="blog-meta-author"><div class="bm-avatar">CR</div>Carlos Ruiz</div><span>12 Feb 2026</span><span>8 min</span></div></div>
+<div class="blog-detail-img ci-1">📋</div>
+<div class="blog-content">
+<p>La OEP 2025-2026 es la más ambiciosa de la década, con más de 40.000 plazas distribuidas entre los principales cuerpos.</p>
+<h2>Plazas por categoría</h2><p>Justicia lidera, seguida de Administración y Sanidad. Incremento del 23% respecto a la anterior.</p>
+<blockquote>La mayor oferta de empleo público en España desde 2010.</blockquote>
+<h2>Calendario de exámenes</h2><p>Exámenes desde el Q2 de 2026. Auxilio Judicial en junio, Tramitación en septiembre.</p>
+<h3>Justicia</h3><p>Auxilio Judicial: junio 2026. Tramitación: septiembre. Gestión Procesal: noviembre.</p>
+<h3>Administración</h3><p>Auxiliar Administrativo: julio 2026. Administrativo del Estado: octubre.</p>
+<h2>¿Cómo prepararse?</h2><p>Empieza con 8-12 meses de antelación. Nuestros preparadores actualizan los temarios a medida que se publican en el BOE.</p>
+</div>
+<div class="blog-share"><span>Compartir:</span><div class="share-btn">📘</div><div class="share-btn">🐦</div><div class="share-btn">💼</div><div class="share-btn">📧</div></div>
+<div class="comments-section"><h3>Comentarios (3)</h3>
+<div class="comment"><div class="comment-avatar">MC</div><div class="comment-body"><div class="comment-header"><span class="comment-name">María Castillo</span><span class="comment-date">12 Feb · 14:32</span></div><div class="comment-text">¡Gran artículo! Estoy preparando Auxilio Judicial.</div><div class="comment-actions"><button class="comment-action">👍 12</button><button class="comment-action">Responder</button></div>
+<div class="comment comment-reply" style="border:none;padding:16px 0 0"><div class="comment-avatar" style="background:var(--gold);color:var(--navy)">O+</div><div class="comment-body"><div class="comment-header"><span class="comment-name">OpositaPlus</span><span class="comment-date">12 Feb · 15:10</span></div><div class="comment-text">¡Hola María! Tu preparador te informará de los cambios. ¡Ánimo!</div></div></div>
+</div></div>
+<div class="comment"><div class="comment-avatar">JL</div><div class="comment-body"><div class="comment-header"><span class="comment-name">José Luis</span><span class="comment-date">12 Feb · 16:45</span></div><div class="comment-text">Llevo 3 meses con vosotros. Los simulacros son idénticos al examen real.</div><div class="comment-actions"><button class="comment-action">👍 8</button><button class="comment-action">Responder</button></div></div></div>
+<div class="comment"><div class="comment-avatar">LP</div><div class="comment-body"><div class="comment-header"><span class="comment-name">Laura Pinto</span><span class="comment-date">13 Feb · 09:20</span></div><div class="comment-text">¿Info sobre plazas de Celador en Andalucía?</div><div class="comment-actions"><button class="comment-action">👍 3</button><button class="comment-action">Responder</button></div></div></div>
+<div class="comment-form"><h4>Deja tu comentario</h4><div class="cf-row"><input type="text" class="cf-input" placeholder="Tu nombre"><input type="email" class="cf-input" placeholder="Tu email"></div><textarea class="cf-textarea" placeholder="Escribe tu comentario..."></textarea><button class="btn-dark btn-sm">Publicar</button></div>
+</div>
+<div style="margin-top:60px"><h3 style="font-family:var(--fd);font-size:24px;color:var(--navy);margin-bottom:24px">Relacionados</h3><div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px">
+<div class="blog-card" style="grid-template-columns:1fr" onclick="navigate('blog-detalle')"><div class="blog-card-img ci-5" style="height:160px">📖</div><div class="blog-card-body"><span class="blog-tag">Legal</span><h3 style="font-size:18px">Ley 39/2015: artículos clave</h3><div class="blog-meta"><span>20 Ene</span><span>7 min</span></div></div></div>
+<div class="blog-card" style="grid-template-columns:1fr" onclick="navigate('blog-detalle')"><div class="blog-card-img ci-3" style="height:160px">🧠</div><div class="blog-card-body"><span class="blog-tag">Técnicas</span><h3 style="font-size:18px">Repetición espaciada</h3><div class="blog-meta"><span>8 Feb</span><span>5 min</span></div></div></div>
+</div></div>
+</div></div></section></div>
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer"><div class="container">
+<div class="footer-grid">
+<div class="footer-brand"><div class="footer-logo"><div class="fl-icon">O+</div><div class="fl-text">Oposita<span>Plus</span></div></div><p>Academia de oposiciones. +15 años formando funcionarios.</p><div class="footer-social"><a>📷</a><a>▶️</a><a>🔗</a><a>🎵</a></div></div>
+<div class="footer-col"><h4>Oposiciones</h4><ul><li><a onclick="navigate('oposiciones')">Justicia</a></li><li><a onclick="navigate('oposiciones')">Administración</a></li><li><a onclick="navigate('oposiciones')">Sanidad</a></li><li><a onclick="navigate('oposiciones')">Educación</a></li><li><a onclick="navigate('oposiciones')">Seguridad</a></li></ul></div>
+<div class="footer-col"><h4>Recursos</h4><ul><li><a onclick="navigate('blog')">Blog</a></li><li><a>Test gratuitos</a></li><li><a>Calendario OEP</a></li><li><a>Podcast</a></li></ul></div>
+<div class="footer-col"><h4>Contacto</h4><ul><li><a>900 123 456</a></li><li><a>info@opositaplus.es</a></li><li><a>WhatsApp</a></li><li><a>Sedes</a></li></ul></div>
+</div>
+<div class="footer-bottom"><span>&copy; 2026 OpositaPlus</span><div class="footer-legal"><a>Aviso legal</a><a>Privacidad</a><a>Cookies</a></div></div>
+</div></footer>
+
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<a href="https://wa.me/34900123456" class="wa-float">💬</a>
+
+<div class="modal-ov" id="modalOv"><div class="modal" id="modalContent">
+<button class="modal-close" onclick="closeModal()">✕</button>
+<h2>Solicita información</h2><p>Un asesor te contactará en menos de 24h.</p>
+<div class="modal-form">
+<div class="fg"><label>Nombre</label><input type="text" class="fi" placeholder="Nombre y apellidos"></div>
+<div class="fg"><label>Email</label><input type="email" class="fi" placeholder="tu@email.com"></div>
+<div class="fg"><label>Teléfono</label><input type="tel" class="fi" placeholder="600 000 000"></div>
+<div class="fg"><label>Oposición</label><select class="fs"><option>Selecciona</option><option>Auxilio Judicial</option><option>Tramitación</option><option>Administrativo</option><option>Celador SAS</option><option>Maestro</option><option>Policía Nacional</option><option>Otra</option></select></div>
+<button class="btn-primary" style="width:100%;justify-content:center;margin-top:8px" onclick="submitForm()">Solicitar información →</button>
+</div></div></div>
+
+<script>
+function navigate(p){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));const t=document.getElementById('page-'+p);if(t){t.classList.add('active');t.style.animation='none';t.offsetHeight;t.style.animation='fadeIn .4s ease'}window.scrollTo({top:0,behavior:'instant'});document.querySelectorAll('.nav-links a:not(.nav-cta)').forEach(a=>a.classList.remove('active'));const n=document.getElementById('nav-'+p);if(n)n.classList.add('active');setTimeout(()=>{document.querySelectorAll('.anim:not(.vis)').forEach(el=>obs.observe(el))},100)}
+const obs=new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting)en.target.classList.add('vis')})},{threshold:.1});document.querySelectorAll('.anim').forEach(el=>obs.observe(el));
+window.addEventListener('scroll',()=>{document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>50);document.getElementById('backTop').classList.toggle('vis',window.scrollY>500)});
+function toggleFaq(el){const i=el.parentElement,a=i.classList.contains('active');i.closest('.faq-grid').querySelectorAll('.faq-item').forEach(x=>x.classList.remove('active'));if(!a)i.classList.add('active')}
+function openModal(){document.getElementById('modalOv').classList.add('active');document.body.style.overflow='hidden'}
+function closeModal(){document.getElementById('modalOv').classList.remove('active');document.body.style.overflow=''}
+document.getElementById('modalOv').addEventListener('click',e=>{if(e.target===e.currentTarget)closeModal()});
+function submitForm(){document.getElementById('modalContent').innerHTML='<div style="text-align:center;padding:40px 0"><div style="font-size:64px;margin-bottom:20px">✅</div><h2 style="font-family:var(--fd);color:var(--navy);margin-bottom:12px">¡Enviado!</h2><p style="color:var(--g500);margin-bottom:24px">Te contactamos en 24h.</p><button class="btn-dark" onclick="closeModal()">Cerrar</button></div>'}
+function toggleMob(){const n=document.getElementById('mobNav');n.classList.toggle('active');document.body.style.overflow=n.classList.contains('active')?'hidden':''}
+function filterCats(b,c){if(b){b.closest('.tabs').querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));b.classList.add('active')}document.querySelectorAll('#catGrid .cat-card').forEach(x=>{x.style.display=(c==='all'||x.dataset.cat===c)?'':'none'})}
+function filterCourses(b,c){if(b){b.closest('.tabs').querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));b.classList.add('active')}document.querySelectorAll('#coursesGrid .course-card').forEach(x=>{x.style.display=(c==='all'||x.dataset.ccat===c)?'':'none'})}
+function filterBlog(b,c){if(b){b.closest('.tabs').querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));b.classList.add('active')}document.querySelectorAll('#blogPosts .blog-card').forEach(x=>{x.style.display=(c==='all'||x.dataset.bcat===c)?'':'none'})}
+</script>
+</body></html>
